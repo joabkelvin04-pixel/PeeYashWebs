@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="img-src 'self' https://images.unsplash.com https://source.unsplash.com data:;"
+    />
+    <title>PeeYashWeb - Ecommerce Demo</title>
+    <link rel="stylesheet" href="demo1.css" />
+  </head>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", Arial, sans-serif;
+      color: #333;
+      background-color: #f9f9f9;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url("/images/ecom.jpg") center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: white;
+      color: #007bff;
+      padding: 10px 25px;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #ffce00;
+      color: #111;
+    }
+
+    /* Sections */
+    .section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .section h2 {
+      margin-bottom: 30px;
+      font-size: 1.8rem;
+    }
+
+    /* Grid Layout */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    /* Cards */
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+      height: 180px;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      margin: 10px 0 5px;
+    }
+
+    .card p {
+      font-size: 1rem;
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    #products p {
+      color: #007bff;
+    }
+
+    /* Testimonials */
+    .testimonials .card {
+      background: #007bff;
+      color: white;
+    }
+
+    /* Contact */
+    .contact {
+      background: #0056b3;
+      color: white;
+    }
+
+    /* Footer */
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+
+  <body>
+    <!-- Header -->
+    <header class="hero">
+      <div class="hero-content">
+        <h1>Shop Smart. Shop Fast.</h1>
+        <p>
+          Discover premium products at unbeatable prices — built with
+          PeeYashWeb.
+        </p>
+        <a href="#products" class="btn">Shop Now</a>
+      </div>
+    </header>
+
+    <!-- Featured Products -->
+    <section id="products" class="section">
+      <h2>Featured Products</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="/images/laptop.png" alt="Laptop" />
+          <h3>Smart Laptop</h3>
+          <p class="prices">$499</p>
+          <button class="btn">Add to Cart</button>
+        </div>
+        <div class="card">
+          <img src="/images/atch.png" alt="Smartwatch" />
+          <h3>Smart Watch</h3>
+          <p class="prices">$99</p>
+          <button class="btn">Add to Cart</button>
+        </div>
+        <div class="card">
+          <img src="/images/headphone.png" alt="Headphones" />
+          <h3>Wireless Headphones</h3>
+          <p class="prices">$59</p>
+          <button class="btn">Add to Cart</button>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <img src="/images/shoe.png" alt="Footwear" />
+          <h3>Footwear</h3>
+          <p class="prices">$499</p>
+          <button class="btn">Add to Cart</button>
+        </div>
+        <div class="card">
+          <img src="/images/fashion.png" alt="Fashion" />
+          <h3>Fashion</h3>
+          <p class="prices">$99</p>
+          <button class="btn">Add to Cart</button>
+        </div>
+        <div class="card">
+          <img src="/images/necklace.png" alt="Necklace" />
+          <h3>Necklace</h3>
+          <p class="prices">$59</p>
+          <button class="btn">Add to Cart</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="section categories">
+      <h2>Shop by Category</h2>
+      <div class="grid">
+        <div class="card">🖥️ Electronics</div>
+        <div class="card">👕 Fashion</div>
+        <div class="card">👟 Footwear</div>
+        <div class="card">🎧 Accessories</div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section testimonials">
+      <h2>What Our Customers Say</h2>
+      <div class="grid">
+        <div class="card">
+          <p>"Amazing quality and fast delivery!"</p>
+          <h4>- Sarah J.</h4>
+        </div>
+        <div class="card">
+          <p>"I love the user-friendly design — PeeYashWeb nailed it."</p>
+          <h4>- Mark T.</h4>
+        </div>
+        <div class="card">
+          <p>"Great deals and beautiful layouts — highly recommend."</p>
+          <h4>- Ada O.</h4>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section contact">
+      <h2>Contact Us</h2>
+      <p>Email: peeyeshweb@gmail.com | WhatsApp: +234 000 000 0000</p>
+      <p><strong>Message/Email To Get Your Web Done</strong></p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2025 PeeYashWeb. All rights reserved.</p>
+      <a href="index.html"> <h3>Back</h3> </a>
+    </footer>
+  </body>
+</html>

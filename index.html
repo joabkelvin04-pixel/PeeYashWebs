@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PeeYashWeb | We Build Websites That Build Your Business</title>
+    <style>
+      :root {
+        --primary: #ff6b00;
+        --dark: #1a1a1a;
+        --light: #ffffff;
+        --gray: #f2f2f2;
+        --accent: #007bff;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        line-height: 1.6;
+        color: var(--dark);
+        background: var(--light);
+        scroll-behavior: smooth;
+      }
+
+      /* Navbar */
+      nav {
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 100;
+      }
+
+      .logo {
+        color: var(--primary);
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-decoration: none;
+        letter-spacing: 1px;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.3s;
+      }
+
+      nav ul li a:hover {
+        color: var(--primary);
+      }
+
+      /* Hero Section */
+      header {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=60")
+            center/cover no-repeat;
+        color: white;
+        text-align: center;
+        padding: 9rem 1.5rem 6rem;
+        margin-top: 60px;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      header p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+      }
+
+      .btn {
+        background: var(--primary);
+        color: white;
+        padding: 0.8rem 1.5rem;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.3s ease;
+        margin-top: 20px;
+      }
+
+      .btn:hover {
+        background: #ff8533;
+      }
+
+      section {
+        padding: 3rem 1.5rem;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 1.8rem;
+      }
+
+      .grid {
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      .card {
+        background: var(--gray);
+        padding: 1.5rem;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* makes sure the button stays at bottom */
+        height: 100%;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+      }
+
+      /* Pricing Section */
+      .pricing .grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+
+      .pricing .card h3 {
+        margin-bottom: 1rem;
+      }
+
+      .price {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--primary);
+      }
+
+      .old-price {
+        text-decoration: line-through;
+        color: #999;
+        font-size: 1rem;
+        margin-left: 5px;
+      }
+
+      .badge {
+        display: inline-block;
+        background: gold;
+        color: black;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+        width: 100px;
+      }
+
+      .portfolio img {
+        width: 100%;
+        border-radius: 10px;
+      }
+
+      .portfolio .grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+
+      ol {
+        max-width: 600px;
+        margin: auto;
+        list-style: decimal inside;
+        line-height: 1.8;
+        font-size: 1.1rem;
+      }
+
+      form {
+        max-width: 500px;
+        margin: 1.5rem auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      input,
+      textarea {
+        padding: 0.8rem;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        width: 100%;
+      }
+
+      footer {
+        background: var(--dark);
+        color: white;
+        text-align: center;
+        padding: 2rem 1rem;
+        font-size: 0.9rem;
+      }
+
+      footer a {
+        color: var(--primary);
+        text-decoration: none;
+      }
+
+      .testimonials .card {
+        font-style: italic;
+        background: #fff8f0;
+      }
+
+      @media (min-width: 768px) {
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .pricing .grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        nav ul {
+          display: none;
+        }
+
+        .menu-toggle {
+          display: block;
+          color: white;
+          font-size: 1.8rem;
+          cursor: pointer;
+        }
+
+        .menu.active {
+          display: flex;
+          flex-direction: column;
+          background: rgba(0, 0, 0, 0.9);
+          position: absolute;
+          top: 60px;
+          right: 0;
+          width: 100%;
+          text-align: center;
+          padding: 1rem 0;
+        }
+
+        .menu.active li {
+          margin: 1rem 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav>
+      <a href="#" class="logo">PeeYashWeb</a>
+      <div class="menu-toggle" id="menu-toggle">☰</div>
+      <ul class="menu">
+        <li><a href="#">Home</a></li>
+        <li><a href="#pricing">Packages</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Hero -->
+    <header>
+      <h1>We Build Websites That Build Your Business</h1>
+      <p>
+        Professional, fast, and affordable websites designed to get you results.
+      </p>
+      <a href="#pricing" class="btn">Get Your Website Today</a>
+    </header>
+
+    <!-- Why Choose Us -->
+    <section>
+      <h2>Why Choose PeeYashWeb</h2>
+      <div class="grid">
+        <div class="card">⚡ Fast Delivery (1–7 days)</div>
+        <div class="card">💳 Flexible Payment Options</div>
+        <div class="card">📱 Mobile-Friendly Designs</div>
+        <div class="card">🛠️ Free Support for 30 Days</div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="pricing">
+      <h2>Our Packages</h2>
+      <div class="grid">
+        <div class="card">
+          <span class="badge">20% OFF</span>
+          <h3>Basic Package</h3>
+          <p class="price">$159 <span class="old-price">$199</span></p>
+          <p>
+            ✔ 3 Pages Website<br />✔ Mobile-Friendly<br />✔ Free Domain (1
+            year)<br />✔ Delivery: 5 days
+          </p>
+          <a
+            href="https://flutterwave.com/pay/ineo2rvcamh0"
+            class="btn"
+            target="_blank"
+            >Order Now</a
+          >
+        </div>
+
+        <div class="card">
+          <span class="badge">10% OFF</span>
+          <h3>Standard Package</h3>
+          <p class="price">$359 <span class="old-price">$399</span></p>
+          <p>
+            ✔ 6 Pages Website<br />✔ SEO Setup<br />✔ Domain + Hosting (1
+            year)<br />✔ Delivery: 7 days
+          </p>
+          <a
+            href="https://flutterwave.com/pay/eixi5ck7lpwv"
+            class="btn"
+            target="_blank"
+            >Order Now</a
+          >
+        </div>
+
+        <div class="card">
+          <span class="badge">45% OFF</span>
+          <h3>Premium Package</h3>
+          <p class="price">$384 <span class="old-price">$699</span></p>
+          <p>
+            ✔ 10+ Pages Website<br />✔ Online Store / Booking<br />✔ SEO +
+            Analytics<br />✔ 3 Months Maintenance
+          </p>
+          <a
+            href="https://flutterwave.com/pay/6rsyuhidmgat"
+            class="btn"
+            target="_blank"
+            >Order Now</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section class="portfolio" id="portfolio">
+      <h2>Our Work</h2>
+      <p style="text-align: center">Preview some of our projects</p>
+      <div class="grid">
+        <div class="card">
+          <img
+            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=60"
+            alt=""
+          />
+          <p>Demo 1 – E-commerce</p>
+          <a href="demo 1.html" class="btn">View Demo</a>
+        </div>
+        <div class="card">
+          <img
+            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=60"
+            alt=""
+          />
+          <p>Demo 2 – Portfolio</p>
+          <a href="porfolio.html" class="btn">View Demo</a>
+        </div>
+        <div class="card">
+          <img
+            src="https://images.unsplash.com/photo-1508830524289-0adcbe822b40?auto=format&fit=crop&w=400&q=60"
+            alt=""
+          />
+          <p>Demo 3 – Business</p>
+          <a href="demo 3.html" class="btn">View Demo</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section>
+      <h2>How It Works</h2>
+      <ol>
+        <li>Choose a Package – Pick from our pricing plans.</li>
+        <li>Place Your Order – Pay securely online via Flutterwave.</li>
+        <li>We Build Your Website – Ready in 1–7 days.</li>
+        <li>Launch & Grow – Go live and start getting customers.</li>
+      </ol>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+      <h2>What Our Clients Say</h2>
+      <div class="grid">
+        <div class="card">
+          “Got my business site live in 3 days — amazing work!” – Sarah, Lagos
+        </div>
+        <div class="card">
+          “Professional and affordable, will use again.” – Michael, UK
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p style="text-align: center">Have questions? Let’s talk.</p>
+      <form action="https://formspree.io/f/xvgwjjbe" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" placeholder="Your Message"></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+      <p style="text-align: center">
+        <Emailto>peeyeshweb@gmail.com</Emailto> <br />📱 WhatsApp: +234 090 2492
+        4562
+      </p>
+    </section>
+
+    <footer>
+      <p>© 2025 PeeYashWeb. All rights reserved.</p>
+      <p>
+        <a href="#">Home</a> | <a href="#pricing">Packages</a> |
+        <a href="#portfolio">Portfolio</a> | <a href="#contact">Contact</a>
+      </p>
+    </footer>
+
+    <script>
+      // Mobile menu toggle
+      const toggle = document.getElementById("menu-toggle");
+      const menu = document.querySelector(".menu");
+      toggle.addEventListener("click", () => menu.classList.toggle("active"));
+
+      // Scroll animation
+      const cards = document.querySelectorAll(".card");
+      window.addEventListener("scroll", () => {
+        const trigger = window.innerHeight / 1.1;
+        cards.forEach((card) => {
+          const top = card.getBoundingClientRect().top;
+          if (top < trigger) {
+            card.style.opacity = "1";
+            card.style.transform = "translateY(0)";
+          }
+        });
+      });
+      cards.forEach((card) => {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(20px)";
+        card.style.transition = "all 0.6s ease";
+      });
+    </script>
+  </body>
+</html>

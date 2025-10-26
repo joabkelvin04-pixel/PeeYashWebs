@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PeeYashWeb | Business Demo 3</title>
+    <style>
+      /* ========== RESET ========== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        color: #222;
+        background: #f9f9f9;
+        overflow-x: hidden;
+      }
+
+      /* ========== NAVBAR ========== */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 60px;
+        z-index: 50;
+        transition: background 0.4s, box-shadow 0.4s;
+      }
+      nav.scrolled {
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      nav h1 {
+        color: #00bcd4;
+        font-weight: 700;
+        font-size: 1.6rem;
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+      }
+      nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.3s;
+      }
+      nav.scrolled ul li a {
+        color: #333;
+      }
+      nav ul li a:hover {
+        color: #00bcd4;
+      }
+
+      /* ========== HERO SECTION ========== */
+      .hero {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        text-align: left;
+        padding: 0 8%;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 1;
+      }
+      .slideshow img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 1.5s ease-in-out;
+      }
+      .slideshow img.active {
+        opacity: 1;
+      }
+      .hero-content {
+        z-index: 2;
+        max-width: 600px;
+      }
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 15px;
+      }
+      .hero p {
+        font-size: 1.1rem;
+        margin-bottom: 25px;
+      }
+      .btn {
+        display: inline-block;
+        background: #00bcd4;
+        color: #fff;
+        padding: 12px 25px;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: background 0.3s;
+      }
+      .btn:hover {
+        background: #0097a7;
+      }
+
+      /* ========== ABOUT / SERVICES ========== */
+      .services {
+        background: #fff;
+        padding: 100px 8%;
+        text-align: center;
+      }
+      .services h2 {
+        color: #00bcd4;
+        font-size: 2rem;
+        margin-bottom: 60px;
+      }
+      .service-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+      .service {
+        background: #f5f5f5;
+        padding: 40px 25px;
+        border-radius: 10px;
+        transition: transform 0.3s;
+      }
+      .service:hover {
+        transform: translateY(-10px);
+      }
+      .service h3 {
+        color: #00bcd4;
+        margin-bottom: 10px;
+      }
+
+      /* ========== PRICING SECTION ========== */
+      .pricing {
+        background: #f0f9fb;
+        padding: 100px 8%;
+        text-align: center;
+      }
+      .pricing h2 {
+        font-size: 2rem;
+        margin-bottom: 50px;
+        color: #00bcd4;
+      }
+      .price-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+      }
+      .card {
+        background: #fff;
+        padding: 40px 25px;
+        border-radius: 12px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s;
+        position: relative;
+      }
+      .card:hover {
+        transform: translateY(-10px);
+      }
+      .card h3 {
+        color: #00bcd4;
+        margin-bottom: 10px;
+      }
+      .card .price {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+      .card .price del {
+        color: #888;
+        font-size: 1rem;
+        margin-left: 5px;
+      }
+      .badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: crimson;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 0.8rem;
+      }
+
+      /* ========== FOOTER ========== */
+      footer {
+        background: #111;
+        color: #ccc;
+        padding: 60px 8%;
+        text-align: center;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+      footer h3 {
+        color: #fff;
+        margin-bottom: 15px;
+      }
+      footer a {
+        color: #ccc;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      footer a:hover {
+        color: #00bcd4;
+      }
+      .footer-bottom {
+        border-top: 1px solid #333;
+        padding-top: 15px;
+        color: #777;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 768px) {
+        nav {
+          padding: 15px 25px;
+        }
+        nav ul {
+          display: none;
+        }
+        .hero h1 {
+          font-size: 2rem;
+        }
+        .hero p {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav id="navbar">
+      <h1>PeeYashWeb</h1>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="slideshow">
+        <img
+          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80"
+          class="active"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1508830524289-0adcbe822b40?auto=format&fit=crop&w=1600&q=80"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80"
+        />
+      </div>
+      <div class="hero-content">
+        <h1>We Create Websites That Work For You</h1>
+        <p>
+          Professional business websites designed to grow your brand and attract
+          clients — fast, responsive, and results-driven.
+        </p>
+        <a href="#pricing" class="btn">Start Your Project</a>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="services">
+      <h2>What We Do</h2>
+      <div class="service-grid">
+        <div class="service">
+          <h3>Corporate Website</h3>
+          <p>
+            We create professional, credible websites for companies and brands
+            worldwide.
+          </p>
+        </div>
+        <div class="service">
+          <h3>Brand Identity</h3>
+          <p>
+            Enhance your digital identity with strong branding and visual
+            consistency.
+          </p>
+        </div>
+        <div class="service">
+          <h3>Maintenance & Support</h3>
+          <p>
+            Enjoy continuous support and upgrades to keep your site performing
+            at its best.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="pricing">
+      <h2>Business Packages</h2>
+      <div class="price-cards">
+        <div class="card">
+          <span class="badge">-20%</span>
+          <h3>Starter</h3>
+          <div class="price">₦40,000 <del>₦50,000</del></div>
+          <p>Landing page • Mobile ready • 1 week delivery</p>
+          <a href="#" class="btn">Order Now</a>
+        </div>
+
+        <div class="card">
+          <span class="badge">-10%</span>
+          <h3>Professional</h3>
+          <div class="price">₦90,000 <del>₦100,000</del></div>
+          <p>5 pages • SEO setup • Free domain (1yr)</p>
+          <a href="#" class="btn">Order Now</a>
+        </div>
+
+        <div class="card">
+          <span class="badge">-45%</span>
+          <h3>Enterprise</h3>
+          <div class="price">₦165,000 <del>₦300,000</del></div>
+          <p>Full business website • E-commerce • Admin panel</p>
+          <a href="#" class="btn">Order Now</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+      <div class="footer-grid">
+        <div>
+          <h3>About PeeYashWeb</h3>
+          <p>
+            We design business-driven websites that build credibility and drive
+            growth online.
+          </p>
+        </div>
+        <div>
+          <h3>Quick Links</h3>
+          <p><a href="#">Home</a></p>
+          <p><a href="#services">Services</a></p>
+          <p><a href="#pricing">Pricing</a></p>
+        </div>
+        <div>
+          <h3>Contact</h3>
+          <p>Email: hello@peeyashweb.com</p>
+          <p>Phone: +234 800 000 0000</p>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2025 PeeYashWeb. All rights reserved.</div>
+      <a href="index.html"> <h3>Back</h3> </a>
+    </footer>
+
+    <script>
+      // Background slideshow
+      const slides = document.querySelectorAll(".slideshow img");
+      let index = 0;
+      setInterval(() => {
+        slides[index].classList.remove("active");
+        index = (index + 1) % slides.length;
+        slides[index].classList.add("active");
+      }, 5000);
+
+      // Navbar color change on scroll
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+    </script>
+  </body>
+</html>
